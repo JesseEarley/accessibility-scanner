@@ -1,0 +1,17 @@
+{
+  "name": "accessibility-scanner",
+  "version": "1.0.0",
+  "description": "Automated WCAG scanner that crawls a site and reports accessibility violations using axe-core.",
+  "main": "scan.js",
+  "scripts": {
+    "start": "node scan.js https://example.com"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axe-core": "^4.7.2",
+    "cheerio": "^1.0.0-rc.12",
+    "node-fetch": "^2.6.12",
+    "puppeteer": "^21.3.8"
+  }
+}
