@@ -28,7 +28,7 @@ jobs:
         run: node scan.js ${{ github.event.inputs.targetUrl }}
 
       - name: Upload HTML Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.4
         with:
           name: accessibility-report
           path: results/report.html
