@@ -1,20 +1,28 @@
-name: Artifact Upload Test
+name: Accessibility Scan
 
 on:
   workflow_dispatch:
+    inputs:
+      targetUrl:
+        description: 'URL to scan'
+        required: true
+        default: 'https://example.com'
 
 jobs:
-  test:
-    runs-on: [ubuntu-latest, self-hosted]
+  scan:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Create a dummy file
-        run: |
-          mkdir -p results
-          echo "<h1>Hello World</h1>" > results/report.html
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-      - name: Upload dummy artifact
+      - run: npm install
+      - run: node scan.js ${{ github.event.inputs.targetUrl }}
+
+      - name: Upload report
         uses: actions/upload-artifact@v3
         with:
-          name: test-report
+          name: accessibility-report
           path: results/report.html
