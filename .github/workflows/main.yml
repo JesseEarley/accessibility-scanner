@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Run accessibility scan
-        run: node scan.js https://example.com
+        run: node scan.js https://natsci.msu.edu
 
       - name: Upload HTML Report
         uses: actions/upload-artifact@v3
