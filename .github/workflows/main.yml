@@ -1,39 +1,20 @@
-name: Accessibility Scan
+name: Artifact Upload Test
 
 on:
   workflow_dispatch:
-    inputs:
-      targetUrl:
-        description: 'URL to scan'
-        required: true
-        default: 'https://example.com'
 
 jobs:
-  scan:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - run: npm install
-
-      - run: node scan.js ${{ github.event.inputs.targetUrl }}
-
-      - name: Debug file structure
-        run: ls -R
-
-      - name: Verify report file
+      - name: Create a dummy file
         run: |
-          if [ ! -f "results/report.html" ]; then
-            echo "Report file not found!"
-            exit 1
-          fi
+          mkdir -p results
+          echo "<h1>Hello World</h1>" > results/report.html
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload dummy artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: accessibility-report
+          name: test-report
           path: results/report.html
