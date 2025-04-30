@@ -33,5 +33,8 @@ if (!startUrl) {
   }
 
   await browser.close();
-  await writeReport(results, 'results');
+const fs = require('fs');
+const outputDir = 'results';
+if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
+await writeReport(results, outputDir);
 })();
