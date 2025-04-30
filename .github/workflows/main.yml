@@ -26,6 +26,13 @@ jobs:
       - name: Debug file structure
         run: ls -R
 
+      - name: Verify report file
+        run: |
+          if [ ! -f "results/report.html" ]; then
+            echo "Report file not found!"
+            exit 1
+          fi
+
       - uses: actions/upload-artifact@v3
         with:
           name: accessibility-report
