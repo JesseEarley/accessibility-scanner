@@ -23,7 +23,10 @@ jobs:
 
       - run: node scan.js ${{ github.event.inputs.targetUrl }}
 
-      - uses: actions/upload-artifact@v2
+      - name: Debug file structure
+        run: ls -R
+
+      - uses: actions/upload-artifact@v3
         with:
           name: accessibility-report
           path: results/report.html
